@@ -20,15 +20,16 @@ The interview is the heart of this skill: a skill is only as good as what you ge
 
 If the conversation already shows the process (the user did the task with you, or pasted a playbook), take what you can from it and interview about the rest.
 
-Run the interview in **rounds**. A round is one message with every question you can ask now, numbered, so the expert can answer them in one go; long, rambling or dictated answers are fine. Then wait for the answers and build the next round from them. Ask only what a person can answer; look up anything you can find yourself, such as a file they mentioned.
+Run the interview in **rounds**. A round is one message with up to about six numbered questions, the ones whose answers change the skill most, so the expert can answer them in one go; long, rambling or dictated answers are fine. The rest wait for the next round. Then wait for the answers and build the next round from them. Ask only what a person can answer; look up anything you can find yourself, such as a file they mentioned.
 
 **Round 1, the whole task:**
 
 1. Which task should the skill handle, and what does finished look like?
 2. What would someone type when they need it? Two or three real phrasings.
 3. Walk me through the last time you did it, step by step, and why you do each step.
-4. Can you paste one piece of finished work you were happy with? The real thing, not an outline: its length and tone teach more than any rule.
-5. What does the AI need to know that isn't about the task itself, such as brand, audience or product details? Which files hold that, and where are they?
+4. Where do juniors go wrong anywhere in the task, and what do you always check before it goes out?
+5. Can you paste one piece of finished work you were happy with? The real thing, not an outline: its length and tone teach more than any rule.
+6. What does the AI need to know that isn't about the task itself, such as brand, audience or product details? Which files hold that, and where are they?
 
 **Every round after that digs into the answers you got:**
 
@@ -38,11 +39,11 @@ Run the interview in **rounds**. A round is one message with every question you 
 - Gaps: a step that seems to be missing, a tool or file they use without naming it, who signs off.
 - Anything in the finished example that the steps don't explain.
 
-Be relentless: one round rarely gets past the steps, and the second and third rounds are where the thinking comes out. When the expert wants to stop early, write the draft from what you have and put everything still unknown on the open-questions list.
+Be relentless: one round rarely gets past the steps, and the second and third rounds are where the thinking comes out. Move to the recap when every section of `assets/skill-template.md` is answered or on the open-questions list, or when a round brings no new step, case or reason. After round 3, ask the expert whether to keep going. When they want to stop, go to the recap with what you have and put everything still unknown on the open-questions list.
 
 Keep a list of **open questions**: everything the expert hasn't answered yet. An open question is never filled with a guess, because a guess in a skill gets repeated on every run.
 
-**Recap before you write.** Send the process back in a few lines, in the expert's own words: each step with its reason, the cases, the usual mistakes. Ask: "Is this how you do it? What's missing or wrong?" Their corrections count as one more round.
+**Recap before you write.** Send the process back, short and in the expert's own words: each step with its reason, the cases, the usual mistakes. Ask: "Is this how you do it? What's missing or wrong?" Apply their corrections. If a step or case changed, send back only that part once, then go on.
 
 **Done when** the expert has confirmed the recap and every remaining unknown is on the open-questions list.
 
