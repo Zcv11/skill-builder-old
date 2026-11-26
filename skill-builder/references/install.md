@@ -8,6 +8,8 @@ A skill is the same folder everywhere. Only where you put it differs. Each tool 
 2. Zip the skill folder so the folder itself sits at the top of the zip (the zip contains `meta-campaign/SKILL.md`, not a loose `SKILL.md`).
 3. Go to Customize > Skills, press +, choose Create skill > Upload a skill, and pick the zip.
 
+Skills that point to brand or product files need those files nearby: put them in a Project's knowledge and use the skill inside that Project.
+
 Custom skills work on every plan, Free included. On Team and Enterprise plans an owner can share a skill with the whole organisation. Claude's help pages explain the current steps if the menus have moved: support.claude.com, "Using skills in Claude".
 
 ## Claude Code

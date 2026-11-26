@@ -187,6 +187,104 @@ class Files(unittest.TestCase):
         self.assertTrue(any("500" in t for t in tips), tips)
 
 
+def errors_and_tips(text, folder="meta-campaign", extra=None):
+    with tempfile.TemporaryDirectory() as tmp:
+        r = validate.check(make_skill(tmp, folder=folder, text=text, extra=extra))
+    return r.errors, r.tips
+
+
+class YamlPitfalls(unittest.TestCase):
+    """Frontmatter that looks fine but won't load, or loads cut short."""
+
+    def test_colon_space_in_an_unquoted_value_is_an_error(self):
+        errors, _ = errors_and_tips(with_description("Plans a campaign. Use when someone says: set up ads."))
+        self.assertTrue(any("quote" in e for e in errors), errors)
+
+    def test_space_hash_in_an_unquoted_value_is_an_error(self):
+        errors, _ = errors_and_tips(with_description("Plans the #1 campaign. Use when asked."))
+        self.assertTrue(any("#" in e for e in errors), errors)
+
+    def test_text_after_a_closing_quote_is_an_error(self):
+        errors, _ = errors_and_tips(with_description('"Weekly report" builder. Use when asked.'))
+        self.assertTrue(errors)
+
+    def test_a_quoted_value_with_a_colon_is_fine(self):
+        errors, tips = errors_and_tips(with_description('"Plans a campaign. Use when someone says: set up ads."'))
+        self.assertEqual(errors, [])
+
+    def test_a_folded_description_is_joined_and_checked(self):
+        text = GOOD.replace(f"description: {GOOD_DESC}", "description: >\n  Plans <campaigns>.\n  Use when asked.")
+        errors, _ = errors_and_tips(text)
+        self.assertTrue(any("<" in e for e in errors), errors)
+
+    def test_a_folded_description_counts_its_when_clause(self):
+        text = GOOD.replace(f"description: {GOOD_DESC}", "description: >\n  Plans campaigns.\n  Use when asked.")
+        errors, tips = errors_and_tips(text)
+        self.assertEqual(errors, [])
+        self.assertFalse(any("when to use" in t.lower() for t in tips), tips)
+
+    def test_a_byte_order_mark_is_fine(self):
+        errors, _ = errors_and_tips("\ufeff" + GOOD)
+        self.assertEqual(errors, [])
+
+    def test_a_file_not_saved_as_utf8_gives_a_clear_error(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            d = make_skill(tmp)
+            (d / "SKILL.md").write_bytes(GOOD.replace("senior", "s\u00e9nior").encode("cp1252"))
+            errors = validate.check(d).errors
+        self.assertTrue(any("UTF-8" in e for e in errors), errors)
+
+    def test_i_o_is_not_first_person(self):
+        _, tips = errors_and_tips(with_description("Checks I/O speed. Use when asked."))
+        self.assertFalse(any("third person" in t for t in tips), tips)
+
+
+class MoreFiles(unittest.TestCase):
+    def test_links_and_placeholders_inside_a_fenced_block_are_ignored(self):
+        text = GOOD.replace("Steps go here.", "```\nSee [last report](reports/2026-01.md)\nOpen items: [TODO: owner]\n```")
+        errors, _ = errors_and_tips(text)
+        self.assertEqual(errors, [])
+
+    def test_a_link_outside_the_skill_gives_a_tip_not_an_error(self):
+        errors, tips = errors_and_tips(GOOD.replace("Steps go here.", "Read [brand](../../context/brand.md) first."))
+        self.assertEqual(errors, [])
+        self.assertTrue(any("brand.md" in t for t in tips), tips)
+
+    def test_a_script_with_arguments_and_a_bare_path_are_checked(self):
+        text = GOOD.replace("Steps go here.", "Run `scripts/build.py --in x` then read references/missing.md.")
+        errors, _ = errors_and_tips(text)
+        self.assertTrue(any("scripts/build.py" in e for e in errors), errors)
+        self.assertTrue(any("references/missing.md" in e for e in errors), errors)
+
+    def test_a_folder_mention_is_not_a_file(self):
+        errors, _ = errors_and_tips(GOOD.replace("Steps go here.", "Put detail in `references/` and code in scripts/."))
+        self.assertEqual(errors, [])
+
+    def test_500_lines_with_a_final_newline_gives_no_tip(self):
+        body = "line\n" * (500 - GOOD.count("\n"))
+        _, tips = errors_and_tips(GOOD + body)
+        self.assertFalse(any("500" in t for t in tips), tips)
+
+
+class Paths(unittest.TestCase):
+    def test_dot_from_inside_the_folder_works(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            d = make_skill(tmp)
+            old = Path.cwd()
+            try:
+                import os
+                os.chdir(d)
+                errors = validate.check(".").errors
+            finally:
+                os.chdir(old)
+        self.assertEqual(errors, [])
+
+    def test_the_path_to_skill_md_itself_works(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            errors = validate.check(make_skill(tmp) / "SKILL.md").errors
+        self.assertEqual(errors, [])
+
+
 class Repo(unittest.TestCase):
     def test_the_template_people_download_is_the_one_the_skill_uses(self):
         public = (ROOT / "template" / "SKILL.md").read_text(encoding="utf-8")

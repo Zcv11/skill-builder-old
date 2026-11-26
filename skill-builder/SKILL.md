@@ -1,6 +1,6 @@
 ---
 name: skill-builder
-description: Interviews the person who knows a task, then writes, checks and tests a skill for it. Use when someone wants to create or improve a skill, or make a process repeatable with AI.
+description: Interviews the person who does a task best, then writes, checks and tests a skill for it. Use when someone wants to turn a process or the way their senior works into a skill, or improve one.
 ---
 
 # Skill builder
@@ -12,7 +12,7 @@ The people using this are often marketers, founders and operators, not developer
 Two branches:
 
 - **New skill:** do steps 1 to 6.
-- **Existing skill to improve or review:** read the skill, run step 4 on it, then go to step 5. Keep its name and folder name unchanged, because other skills, people and tools may call it by that name.
+- **Existing skill to improve or review:** read the skill, run step 4 on it, then go to step 5. Keep its name and folder name unchanged, because other skills, people and tools may call it by that name. If the checker flags the name itself, tell the user what a rename would break and let them decide.
 
 ## 1. Get the process out of the expert's head
 
@@ -24,12 +24,14 @@ Otherwise interview the person who does the task best. Ask in one message, not o
 2. What would someone type when they need it? Ask for two or three real phrasings.
 3. Walk me through the last time you did it, step by step. Why do you do each step?
 4. Where do juniors or newcomers usually go wrong?
-5. Can you share one example of finished work you were happy with?
-6. What does the AI need to know that isn't about the task itself, such as brand, audience or product details? Where does that already live?
+5. Can you paste one piece of finished work you were happy with? The real thing, not an outline: its length and tone teach more than any rule.
+6. What does the AI need to know that isn't about the task itself, such as brand, audience or product details? Which files hold that, and where are they?
 
 Ask "why" after every step they name. The reasons are what turn a checklist into the senior's thinking. When they say "it depends", ask what it depends on and write the cases down.
 
-**Done when** you can fill every part of `assets/skill-template.md` without guessing. Anything still unknown stays a visible `[FILL IN: ...]` gap for the user, never an invented answer.
+Keep a list of **open questions**: everything the expert hasn't answered yet. An open question is never filled with a guess, because a guess in a skill gets repeated on every run.
+
+**Done when** you can fill the template from the answers, and every remaining unknown is on the open-questions list.
 
 ## 2. Decide the shape
 
@@ -40,9 +42,11 @@ Ask "why" after every step they name. The reasons are what turn a checklist into
   - `references/`: detail only some runs need (a long checklist, platform specs, edge cases). `SKILL.md` says when to read each file.
   - `scripts/`: code for anything that must come out exactly the same every time (a calculation, a format check).
   - `assets/`: files the output uses (a template, a logo).
-- **Brand and product knowledge stays outside the skill.** If the team keeps context files (brand, voice, audience, products), the skill names the ones to read for this task instead of copying them in. Then a brand update reaches every skill at once.
+- **Brand and product knowledge stays outside the skill.** If the team keeps context files (brand, voice, audience, products), the skill names the ones to read for this task and says where they live, instead of copying them in. Then a brand update reaches every skill at once. Also decide what the skill does when a file is missing: usually it asks the user to paste the part it needs.
+- **Script or not:** add a script to `scripts/` only where the AI has to be exact and tends not to be, like counting characters, adding up a budget or checking a format. Everything else stays as written steps.
+- **Where to save it:** a folder named after the skill, in the user's working folder or wherever they keep the team's skills. Ask if it isn't obvious.
 
-**Done when** you know the name, the folders it needs and which context files it points to.
+**Done when** you know the name, the folders it needs, which context files it points to and where it gets saved.
 
 ## 3. Write it
 
@@ -50,7 +54,12 @@ Copy `assets/skill-template.md` into the new folder as `SKILL.md` and fill it in
 
 Write in the expert's words where you can. Use their phrases for what good looks like and for the mistakes. Explain why behind each rule; a model that understands the reason handles cases the rule never mentioned.
 
-**Done when** every `[FILL IN: ...]` is replaced and the expert's example is in the skill or in `references/`.
+- **Order:** put the steps in the order they're actually done. If that differs from how the expert listed them ("I write the subject line last"), confirm the order with them.
+- **Only what the expert said:** leave out a "Good looks like" or "Common mistake" line when the expert gave nothing for it. A mistake tied to one step goes under that step. A fact that trips people up anywhere in the task goes in Gotchas. Each one goes in one place, not both.
+- **Steps a person has to do:** when a step needs a human (reading it on a phone, a final sign-off), write it as a hand-back: the skill tells the user to do it and what to look for.
+- **Open questions** stay as `[FILL IN: question]` in the skill. The checker treats them as errors on purpose: a skill with open questions is a draft, not finished.
+
+**Done when** every part of the template is either filled from the expert's answers or marked as an open question.
 
 ## 4. Check it
 
@@ -62,15 +71,18 @@ python3 scripts/validate.py path/to/the-skill
 
 Fix every ERROR. For every TIP, fix it or tell the user why it can stay. If you can't run code, go through `references/checklist.md` by hand.
 
-**Done when** the checker shows no errors and you have gone through each tip.
+If the only errors left are open questions, send the expert the list in one message and fill in their answers. An open question is cleared only by the expert's answer, never by text written to make the checker pass. When the expert isn't available, go on to step 5 with the draft and say clearly that it isn't finished until those questions are answered.
+
+**Done when** the checker shows no errors, or only open questions that are with the expert, and you have gone through each tip.
 
 ## 5. Test it on real work
 
 1. Write two or three prompts the way a real team member would type them, with real-looking details. Show them to the user and adjust.
-2. Run each prompt with the skill. If you can start a separate agent or a fresh chat, run it there, so the test doesn't lean on what you already know from building it. If you can, run the same prompt once without the skill too, so the user sees what the skill adds.
-3. Show the outputs to the expert and ask: would you sign off on this as your own work? Note every "no" and why.
-4. Fix the skill for the pattern behind each "no", not only for that one prompt. Then run the prompts again.
-5. Check the trigger: write three prompts that should use the skill and two close calls that shouldn't (same topic, different job). Read the description against each one and sharpen it until it fits all five.
+2. Give the test the context files the skill points to: the real ones, or a short sample from the user. Without them the test only shows the skill asking for its files.
+3. Run each prompt with the skill. If you can start a separate agent or a fresh chat, run it there, so the test doesn't lean on what you already know from building it. To show what the skill adds, run the same prompt in a fresh chat without the skill and put the two outputs side by side.
+4. Show the outputs to the expert and ask: would you sign off on this as your own work? Note every "no" and why.
+5. Fix the skill for the pattern behind each "no", not only for that one prompt. Then run the prompts again.
+6. Check the trigger: write three prompts that should use the skill and two close calls that shouldn't (same topic, different job). Read the description against each one and sharpen it until it fits all five. Keep the expert's own phrases, but when one also fits a different job (a "customer email" that could be a welcome email), make it more specific and check the change with the expert.
 
 If the user wants a second opinion, have a different AI model review the skill and one output. A model rarely spots its own blind spots.
 

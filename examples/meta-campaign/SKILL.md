@@ -28,14 +28,14 @@ Then ask the user, in one message, for whatever is still missing:
 
 Pick one objective and one conversion event that matches it. A campaign that optimises for clicks while the business wants sales finds the people who click, not the people who buy.
 
-- Good looks like: one named conversion event (for example Purchase), confirmed to be firing in Events Manager before launch.
+- Good looks like: one named conversion event (for example Purchase), confirmed in Events Manager before launch, sent by both the pixel and the Conversions API and deduplicated, so each sale counts once.
 - Common mistake: launching while the event isn't firing. Meta then learns from nothing, and the first days of budget teach it the wrong thing.
 
 ### 2. Keep the structure simple
 
 Use as few campaigns and ad sets as the goal allows. Every ad set learns on its own, so splitting the budget over many ad sets means each one learns slower.
 
-- Good looks like: one campaign per goal, a small number of ad sets that differ for a real reason (a different audience temperature, a different country).
+- Good looks like: one campaign per goal, a small number of ad sets that differ for a real reason (a different audience temperature, a different country), and past buyers excluded from prospecting.
 - Common mistake: one ad set per interest, each with a few euros a day, none of them getting enough results to learn.
 
 ### 3. Check the budget can teach the algorithm
@@ -89,10 +89,18 @@ Goal and conversion event: sales, optimising for Purchase
 Tracking check: Purchase event confirmed firing on 2 Dec, by the web team
 Budget: €3,000 over 4 weeks ≈ €107 a day. Expected cost per purchase €15
         → 50 × €15 ÷ 7 ≈ €107 a day for one ad set. So one prospecting ad set, not three.
-Structure: 1 campaign (sales) → 1 ad set, broad audience, NL, all placements
-Concepts: 1. "The gift that isn't socks" (objection), 2. unboxing video (proof),
-          3. "Tea for the person who has everything" (desire)
+Structure: 1 campaign (sales) → 1 ad set, broad audience, NL, all placements,
+           past buyers excluded
+Concepts:
+  1. "Tea for the person who has everything" (objection: they're hard to buy for)
+     Formats: 9:16 video, 4:5 image
+     Primary text: Hard to buy for? Twelve teas they've never tried, in one box
+                   that looks like you planned it in October.
+     Headline: The winter tea box   CTA: Shop now
+  2. Unboxing video (proof)
+  3. "The gift that isn't socks" (desire: a gift that feels chosen)
 Naming pattern: 2026-12_prospecting_sales_nl / adset_broad / ad_concept-1_916
+UTM template: utm_source=meta&utm_medium=paid_social&utm_campaign={{campaign.name}}&utm_content={{ad.name}}
 Open questions: is free shipping confirmed for the gift box?
 ```
 

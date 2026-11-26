@@ -8,14 +8,15 @@ For when you can't run `scripts/validate.py`. Go through every line; the first t
 - [ ] It starts with a frontmatter block: a `---` line, the fields, another `---` line.
 - [ ] `name` uses only lowercase letters, numbers and single hyphens, is 64 characters or fewer, and doesn't contain `claude` or `anthropic`.
 - [ ] The folder has exactly the same name as `name`.
-- [ ] `description` is there, on one line, 1,024 characters or fewer, without `<` or `>`.
+- [ ] `description` is there, 1,024 characters or fewer, without `<` or `>`.
+- [ ] Any value with a colon followed by a space, or with ` #` in it, is in double quotes.
+- [ ] For an upload to claude.ai: the frontmatter has only `name`, `description` and, if needed, `license`, `compatibility`, `metadata` or `allowed-tools`.
 - [ ] No `[FILL IN: ...]` or `[TODO]` gaps are left.
 - [ ] Every file the skill mentions (`references/...`, `scripts/...`, `assets/...`) is in the folder.
 
 ## It works, but worse, without these
 
-- [ ] The description reads "Does X. Use when Y.", in the third person, in 200 characters or fewer.
-- [ ] The frontmatter has only `name`, `description` and, if needed, `license`, `compatibility`, `metadata` or `allowed-tools`. Other fields make an upload to claude.ai fail.
+- [ ] The description is on one line and reads "Does X. Use when Y.", in the third person, in 200 characters or fewer.
 - [ ] `SKILL.md` is under 500 lines.
 - [ ] No `<!-- guidance comments -->` from the template are left.
 
