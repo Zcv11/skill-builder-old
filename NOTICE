@@ -1,0 +1,8 @@
+Skill builder
+Copyright 2026 Zeb Visser
+
+This project adapts ideas and structure from Anthropic's skill-creator
+(https://github.com/anthropics/skills/tree/main/skills/skill-creator),
+licensed under the Apache License, Version 2.0. No files were copied
+unchanged; the skill, template, checker and guides were written for this
+project and follow the Agent Skills format (https://agentskills.io/specification).
