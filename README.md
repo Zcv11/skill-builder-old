@@ -1,4 +1,4 @@
-![The S&S Skill Builder: turn how your best person works into a skill.](.github/banner.png)
+![The skill I used to write 100+ skills: get the process out of your senior's head and into a skill.](.github/banner.png)
 
 # Skill builder
 
