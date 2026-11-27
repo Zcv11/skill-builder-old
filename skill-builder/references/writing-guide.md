@@ -16,25 +16,25 @@ How to write a skill that the AI picks at the right moment and then follows well
 
 The description is the only part of a skill the AI sees before it decides to use it. Every installed skill's name and description sit in the AI's context all the time; the rest loads only when the skill fires. So the description decides whether the skill is ever used.
 
-- Write it as **"Does X. Use when Y."** Third person for what it does ("Plans a Meta campaign", not "I plan" or "You can use this to"), then the moments it should fire.
+- Write it as **"Does X. Use when Y."** Third person for what it does ("Writes the weekly report", not "I plan" or "You can use this to"), then the moments it should fire.
 - Put every trigger in the description, none in the body. The body is only read after the choice is made.
-- Use the words people actually type, including the cases where they never say the domain word: "...or when someone asks to check a campaign before launch".
+- Use the words people actually type, including the cases where they never say the domain word: "...or when someone asks for the Monday update".
 - Lean a little pushy. AI models tend to skip skills they could have used, so name the situations clearly.
 - Keep it to one line and 200 characters or fewer. The format allows 1,024, but Claude's help pages ask for 200, and a short description is easier to pick out from a hundred others.
 - No `<` or `>`.
 
 ## The name
 
-- Lowercase letters, numbers and single hyphens, up to 64 characters: `meta-campaign`, `weekly-report`.
+- Lowercase letters, numbers and single hyphens, up to 64 characters: `weekly-report`, `launch-email`.
 - The folder has exactly the same name. An upload fails if they differ.
 - Say what it does. Avoid `helper`, `tools`, `utils`.
 - The words `claude` and `anthropic` are reserved.
 
 ## The body
 
-- Keep `SKILL.md` under 500 lines. Move detail that only some runs need into `references/` and say when to read it: "Read `references/specs.md` when the campaign includes video."
+- Keep `SKILL.md` under 500 lines. Move detail that only some runs need into `references/` and say when to read it: "Read `references/charts.md` when the report needs charts."
 - Assume the AI is already smart. For each paragraph, ask whether it changes what the AI would do without it. If not, cut it.
-- Explain why. "Check the tracking first, because Meta learns from the first days of budget" handles cases a bare rule never covered. Writing ALWAYS or NEVER in capitals is a sign the reason is missing.
+- Explain why. "Check last week's numbers first, because every comparison in the report builds on them" handles cases a bare rule never covered. Writing ALWAYS or NEVER in capitals is a sign the reason is missing.
 - Say what to do, not what to avoid. Name the target behaviour, and keep a "never" only for a hard limit you can't phrase another way.
 - Use one word for one thing all the way through. If it's a "brief" in step 2, it's not a "plan" in step 4.
 - Give one default way and an escape for the exception, not a menu of five options.
@@ -69,5 +69,5 @@ The description is the only part of a skill the AI sees before it decides to use
 ## What to leave out
 
 - Brand, audience and product details. They belong in the team's context files, which the skill names. Then one update reaches every skill.
-- Background the AI already knows ("Meta is a social media company").
+- Background the AI already knows ("A report summarises results").
 - Notes about how the skill was made. Credits go in the README, not in `SKILL.md`.

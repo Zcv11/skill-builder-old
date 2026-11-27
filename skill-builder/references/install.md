@@ -5,7 +5,7 @@ A skill is the same folder everywhere. Only where you put it differs. Each tool 
 ## Claude (claude.ai and the Claude apps)
 
 1. Turn on code execution: Settings > Capabilities.
-2. Zip the skill folder so the folder itself sits at the top of the zip (the zip contains `meta-campaign/SKILL.md`, not a loose `SKILL.md`).
+2. Zip the skill folder so the folder itself sits at the top of the zip (the zip contains `weekly-report/SKILL.md`, not a loose `SKILL.md`).
 3. Go to Customize > Skills, press +, choose Create skill > Upload a skill, and pick the zip.
 
 Skills that point to brand or product files need those files nearby: put them in a Project's knowledge and use the skill inside that Project.
@@ -16,10 +16,10 @@ Custom skills work on every plan, Free included. On Team and Enterprise plans an
 
 Copy the folder to one of these:
 
-- `~/.claude/skills/meta-campaign/` for yourself, in every project.
-- `.claude/skills/meta-campaign/` inside a project, for everyone who works in it. Commit it with the project.
+- `~/.claude/skills/weekly-report/` for yourself, in every project.
+- `.claude/skills/weekly-report/` inside a project, for everyone who works in it. Commit it with the project.
 
-Claude Code picks up new and changed skills while it runs. Type `/meta-campaign` to run one by hand.
+Claude Code picks up new and changed skills while it runs. Type `/weekly-report` to run one by hand.
 
 ## Other tools that read the same format
 

@@ -50,7 +50,7 @@ Keep a list of **open questions**: everything the expert hasn't answered yet. An
 ## 2. Decide the shape
 
 - **One skill, one job.** If the interview turned up two tasks with different triggers, make two skills.
-- **Name:** lowercase words joined by hyphens, saying what it does: `meta-campaign`, `weekly-report`. The folder gets the same name.
+- **Name:** lowercase words joined by hyphens, saying what it does: `weekly-report`, `launch-email`. The folder gets the same name.
 - **What goes where:**
   - `SKILL.md`: the steps and the rules every run needs. Keep it under 500 lines.
   - `references/`: detail only some runs need (a long checklist, platform specs, edge cases). `SKILL.md` says when to read each file.
