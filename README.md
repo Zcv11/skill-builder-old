@@ -1,6 +1,8 @@
+![The S&S Skill Builder: turn how your best person works into a skill.](.github/banner.png)
+
 # Skill builder
 
-Turn the way your best person does a task into a skill your whole team can run with AI.
+This is the skill builder we use at Sprints & Sneakers. It turns the way your best person does a task into a skill your whole team can run with AI.
 
 A skill is basically a folder with one text file in it, `SKILL.md`, that holds a process step by step with the thinking behind every step. Your senior writes it once. After that anyone on the team can ask for that task (or type `/meta-campaign` in Claude Code) and the AI walks through the work the way the senior would.
 
