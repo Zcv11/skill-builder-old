@@ -6,13 +6,12 @@ This is the skill builder we use at Sprints & Sneakers. It turns the way your be
 
 A skill is basically a folder with one text file in it, `SKILL.md`, that holds a process step by step with the thinking behind every step. Your senior writes it once. After that anyone on the team can ask for that task (or type `/meta-campaign` in Claude Code) and the AI walks through the work the way the senior would.
 
-This repo has three things:
+This repo has two things:
 
 | | What it is | For you if |
 |---|---|---|
 | [`skill-builder/`](skill-builder/) | A skill that interviews you about a task and writes, checks and tests the skill for you | You'd rather talk it through than write it |
 | [`template/SKILL.md`](template/SKILL.md) | A fill-in-the-blanks skill | You want to write it yourself |
-| [`examples/meta-campaign/`](examples/meta-campaign/SKILL.md) | A finished skill for planning a Meta ads campaign | You want to see what a good one looks like |
 
 ## Option 1: let the skill builder interview you
 
