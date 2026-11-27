@@ -14,24 +14,38 @@ Two branches:
 - **New skill:** do steps 1 to 6.
 - **Existing skill to improve or review:** read the skill, run step 4 on it, then go to step 5. Keep its name and folder name unchanged, because other skills, people and tools may call it by that name. If the checker flags the name itself, tell the user what a rename would break and let them decide.
 
-## 1. Get the process out of the expert's head
+## 1. Interview the expert
 
-If the conversation already shows the process (the user did the task with you, or pasted a playbook), pull the answers from there first and only ask about the gaps.
+The interview is the heart of this skill: a skill is only as good as what you get out of the expert's head. A form filled in once gets the steps; an interview gets the reasons, the judgement calls and the mistakes, which are the parts a junior doesn't have.
 
-Otherwise interview the person who does the task best. Ask in one message, not one question at a time:
+If the conversation already shows the process (the user did the task with you, or pasted a playbook), take what you can from it and interview about the rest.
+
+Run the interview in **rounds**. A round is one message with up to about six numbered questions, the ones whose answers change the skill most, so the expert can answer them in one go; long, rambling or dictated answers are fine. The rest wait for the next round. Then wait for the answers and build the next round from them. Ask only what a person can answer; look up anything you can find yourself, such as a file they mentioned.
+
+**Round 1, the whole task:**
 
 1. Which task should the skill handle, and what does finished look like?
-2. What would someone type when they need it? Ask for two or three real phrasings.
-3. Walk me through the last time you did it, step by step. Why do you do each step?
-4. Where do juniors or newcomers usually go wrong?
+2. What would someone type when they need it? Two or three real phrasings.
+3. Walk me through the last time you did it, step by step, and why you do each step.
+4. Where do juniors go wrong anywhere in the task, and what do you always check before it goes out?
 5. Can you paste one piece of finished work you were happy with? The real thing, not an outline: its length and tone teach more than any rule.
 6. What does the AI need to know that isn't about the task itself, such as brand, audience or product details? Which files hold that, and where are they?
 
-Ask "why" after every step they name. The reasons are what turn a checklist into the senior's thinking. When they say "it depends", ask what it depends on and write the cases down.
+**Every round after that digs into the answers you got:**
+
+- For each step: why it's done, what good looks like, and where juniors or newcomers go wrong.
+- Every "it depends": what it depends on, and what they do in each case.
+- Every vague word ("make it punchy", "check it's right"): what exactly they look at to decide.
+- Gaps: a step that seems to be missing, a tool or file they use without naming it, who signs off.
+- Anything in the finished example that the steps don't explain.
+
+Be relentless: one round rarely gets past the steps, and the second and third rounds are where the thinking comes out. Move to the recap when every section of `assets/skill-template.md` is answered or on the open-questions list, or when a round brings no new step, case or reason. After round 3, ask the expert whether to keep going. When they want to stop, go to the recap with what you have and put everything still unknown on the open-questions list.
 
 Keep a list of **open questions**: everything the expert hasn't answered yet. An open question is never filled with a guess, because a guess in a skill gets repeated on every run.
 
-**Done when** you can fill the template from the answers, and every remaining unknown is on the open-questions list.
+**Recap before you write.** Send the process back, short and in the expert's own words: each step with its reason, the cases, the usual mistakes. Ask: "Is this how you do it? What's missing or wrong?" Apply their corrections. If a step or case changed, send back only that part once, then go on.
+
+**Done when** the expert has confirmed the recap and every remaining unknown is on the open-questions list.
 
 ## 2. Decide the shape
 

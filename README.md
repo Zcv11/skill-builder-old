@@ -16,7 +16,7 @@ This repo has three things:
 
 1. Install the `skill-builder` folder (see [Install](#install)).
 2. Ask your senior to open Claude and say something like: "Turn the way I build a new Meta campaign into a skill."
-3. It asks them how they do it, step by step and why, and where juniors usually go wrong. Then it writes the skill and tests it on a real request before handing it over.
+3. It interviews them in a few rounds of questions: how they do it, step by step and why, what good looks like and where juniors usually go wrong. It reads its summary back for them to correct, then writes the skill and tests it on a real request before handing it over.
 
 ## Option 2: fill in the template
 
