@@ -146,10 +146,10 @@ def check_fields(fields, result):
 
 def check_name(name, folder, result):
     if not name:
-        result.errors.append("The frontmatter has no name. Add a line like: name: meta-campaign")
+        result.errors.append("The frontmatter has no name. Add a line like: name: weekly-report")
         return
     if not re.fullmatch(r"[a-z0-9]+(-[a-z0-9]+)*", name):
-        result.errors.append(f"name '{name}' may only use lowercase letters, numbers and single hyphens (meta-campaign, not Meta Campaign).")
+        result.errors.append(f"name '{name}' may only use lowercase letters, numbers and single hyphens (weekly-report, not Weekly Report).")
     if len(name) > 64:
         result.errors.append(f"name is {len(name)} characters; the maximum is 64.")
     for word in ("claude", "anthropic"):

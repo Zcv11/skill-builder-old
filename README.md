@@ -4,7 +4,7 @@
 
 This is the skill builder we use at Sprints & Sneakers. It turns the way your best person does a task into a skill your whole team can run with AI.
 
-A skill is basically a folder with one text file in it, `SKILL.md`, that holds a process step by step with the thinking behind every step. Your senior writes it once. After that anyone on the team can ask for that task (or type `/meta-campaign` in Claude Code) and the AI walks through the work the way the senior would.
+A skill is basically a folder with one text file in it, `SKILL.md`, that holds a process step by step with the thinking behind every step. Your senior writes it once. After that anyone on the team can ask for that task (or type `/weekly-report` in Claude Code) and the AI walks through the work the way the senior would.
 
 This repo has two things:
 
@@ -16,7 +16,7 @@ This repo has two things:
 ## Option 1: let the skill builder interview you
 
 1. Install the `skill-builder` folder (see [Install](#install)).
-2. Ask your senior to open Claude and say something like: "Turn the way I build a new Meta campaign into a skill."
+2. Ask your senior to open Claude and say something like: "Turn the way I write our weekly report into a skill."
 3. It interviews them in a few rounds of questions: how they do it, step by step and why, what good looks like and where juniors usually go wrong. It reads its summary back for them to correct, then writes the skill and tests it on a real request before handing it over.
 
 ## Option 2: fill in the template

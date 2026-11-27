@@ -1,11 +1,11 @@
 ---
-name: [FILL IN: lowercase-with-hyphens, max 64 characters, the same as the folder name, e.g. meta-campaign]
-description: [FILL IN: one line of 200 characters or fewer, written as "Does X. Use when Y." Say what the skill does and the words people actually use when they need it, e.g. "Plans a Meta ads campaign the way our senior does it. Use when someone asks to set up, plan or check a Meta or Facebook campaign."]
+name: [FILL IN: lowercase-with-hyphens, max 64 characters, the same as the folder name, e.g. weekly-report]
+description: [FILL IN: one line of 200 characters or fewer, written as "Does X. Use when Y." Say what the skill does and the words people actually use when they need it, e.g. "Writes the weekly report the way our team lead does it. Use when someone asks for the weekly report, the Monday update or a summary of last week's numbers."]
 ---
 
 # [FILL IN: the task, in a few words]
 
-[FILL IN: one or two sentences. What this skill produces, and for whom. e.g. "Builds a launch-ready Meta campaign plan the way our paid social lead does it, so anyone on the team gets the same structure and checks."]
+[FILL IN: one or two sentences. What this skill produces, and for whom. e.g. "Writes the weekly report the way our team lead does it, so anyone on the team gets the same structure and checks."]
 
 ## Before you start
 
